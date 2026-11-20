@@ -376,5 +376,6 @@ struct BackupDocument: FileDocument {
     var data: Data
     init(url: URL?) { data = url.flatMap{try? Data(contentsOf: $0)} ?? Data("[]".utf8) }
     init(configuration: ReadConfiguration) throws { data = configuration.file.regularFileContents ?? Data() }
-    func fileWrapper(configuration: WriteConfiguration) throws { FileWrapper(regularFileWithContents: data) }
+    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+    return FileWrapper(regularFileWithContents: data)
 }
